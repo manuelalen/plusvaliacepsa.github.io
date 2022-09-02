@@ -5,5 +5,5 @@ title: "My Website"
 Hello, Website!
 
 ```{r}
-head(empresas_plusvalia)
+head(iris)
 ````
