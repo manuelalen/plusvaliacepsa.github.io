@@ -4,7 +4,7 @@ title: "My Website"
 
 Hello, Website!
 
-```{r}
+```{r echo=FALSE}
 ##Loading libraries
 library(RMySQL)
 library(ggplot2)
