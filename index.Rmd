@@ -4,6 +4,6 @@ title: "My Website"
 
 Hello, Website!
 
-```{r echo=FALSE}
-head(iris)
+```{r}
+![Gráfico con la tasa de plusvalía](Capturas/Rplot.png)
 ````
