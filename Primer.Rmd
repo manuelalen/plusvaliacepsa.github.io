@@ -1,0 +1,66 @@
+---
+title: "Reforzadores por tiempo"
+author: "Manuel Alén Sánchez"
+date: "02/11/2022"
+output: html_document
+---
+
+# Introducción {#seccion-1}
+
+Este _contenido_ ha sido diseñado por **Manuel Alén Sánchez** Para más contenido similar,su [cuenta de Twitter](https://twitter.com/alen_manu).
+
+```{r echo=FALSE, include=FALSE, chunk-1}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+library(ggplot2)
+library(plotly)
+colors <- c("LaB" = "Red","LaE" = "Blue")
+
+df_proporcion <- data.frame(
+  Año <- c(1:8),
+  LaE <- c(20,15,14,16,13,8,8,10),
+  LaB <- c(16,16,19,17,16,16,20,18)
+)
+
+colnames(df_proporcion) <- c("Año","LaE","LaB")
+gg <- ggplot(df_proporcion)+
+  geom_line(aes(x = Año, y = LaE, color = "LaE"))+
+  geom_line(aes(x = Año, y = LaB, color = "LaB"))+
+  theme_minimal()+
+  theme_light()+
+  theme(text = element_text(family = "Tahoma"),
+        panel.background = element_rect(color = "white", # Border color
+                                        size = 1, fill = "#FFFFFF"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold",hjust = 0.5,size = 25),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.title.position = "plot" ,
+        panel.border = element_blank(),
+        axis.line = element_line(size = 1, colour = "black", linetype=1),
+        legend.position = "top",
+        legend.background = element_rect(fill="lightblue", 
+                                         size=0.5, linetype="solid"))+
+    labs(title = "Reforzadores por tipos de visión",
+       caption = "Author: Manuel Alén Sánchez",
+       x = "Año", y="Reforzadores",
+       color = "Leyenda")+
+  expand_limits(x = 0, y = 0)+
+  scale_color_manual(values = colors)+
+  scale_x_discrete(limits=c("0","1","2","3","4","5","6","7","8"))+
+  geom_hline(yintercept = 5, linetype="dotted", color="red", size = 1)
+
+
+
+```
+
+## Chunks de código {#chunks}
+
+Visualización de los reforzadores por tiempo en función de la visión que se tenga sobre el amor.
+
+
+```{r chunk-2}
+ggplotly(gg, tooltip = c("x","y"))
+```
+
+
+
