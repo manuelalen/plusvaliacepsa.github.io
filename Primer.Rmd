@@ -1,0 +1,142 @@
+---
+title: "Píldoras de Estadística: ¿Qué equipo de fútbol es el mejor? La estadística responde"
+author: "Manuel Alén Sánchez"
+date: "04/11/2022"
+output: html_document
+---
+
+# Introducción {#seccion-1}
+
+Este _contenido_ ha sido diseñado por **Manuel Alén Sánchez**.
+
+## Desarrollo de la metodología
+
+Para determinar si un equipo de fútbol está por encima del resto (en cuanto a títulos), se puede analizar de la siguiente forma propuesta.
+
+Sabiendo que en La Liga Española hay 20 equipos y que se han disputado un total de 92 ediciones de esta competición, podemos calcular la **Esperanza Matemática** cuántos títulos podría ganar un equipo (considerando que todos los equipos tengan la misma probabilidad de ganarla, por algo Xavi Hernández dijo que la Liga es algo distinto a la Champions jejeje).
+
+Una vez conocida esta esperanza matemática (cada equipo la ganaría unas 4,6 veces), deberemos calcular cuánto se espera que fluctúe y así establecer nuestro intervalo superior de confianza. Esto lo realizaremos con la distribución normal (raíz de n).
+
+Sabiendo esto, si un equipo se encuentra en medio de los intervalos de confianza (la esperanza matemática como intervalo mínimo y fluctuación como máximo), decimos que es un equipo promedio pues realiza y gana lo que se espera. Si está por debajo del intervalo mínimo de confiaza, decimos que es un equipo mediocre. Finalmente, si se encuentra por encima del intervalo superior de confianza, decimos que es un equipo superior al resto. Así pues, para La Liga obtenemos el siguiente resultado.
+
+```{r echo=FALSE, include=FALSE, chunk-1}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+library(ggplot2)
+library(plotly)
+
+df_equipos_liga <- data.frame(
+  equipos <- c("Real Madrid","FC. Barcelona","At. Madrid","At. Club Bilbao",
+               "Valencia"),
+  Limite_Inferior <- c(rep(4.6,5)),
+  Limite_Superior <- c(rep(9.59,5)),
+  Titulos <- c(35,26,11,8,6)
+)
+
+colnames(df_equipos_liga) <- c("Equipos","Limite_Inferior","Limite_Superior",
+                               "Titulos")
+liga <- ggplot(df_equipos_liga,aes(x=Equipos, group = 1))+
+  geom_line(aes(x=Equipos,y=Limite_Inferior,color="Limite Inferior"))+
+  geom_line(aes(x=Equipos,y=Limite_Superior,color="Limite Superior"))+
+  geom_line(aes(x=Equipos,y=Titulos,color="Titulos"))+
+  theme_minimal()+
+  theme_light()+
+  theme(text = element_text(family = "Tahoma"),
+        panel.background = element_rect(color = "white", # Border color
+                                        size = 1, fill = "#FFFFFF"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold",hjust = 0.5,size = 25),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.title.position = "plot" ,
+        panel.border = element_blank(),
+        axis.line = element_line(size = 1, colour = "black", linetype=1),
+        legend.position = "top",
+        legend.background = element_rect(fill="lightblue", 
+                                         size=0.5, linetype="solid"))+
+  labs(caption = "Author: Manuel Alén Sánchez",
+       x = "Equipos", y="Títulos",
+       color = "Leyenda")+
+  expand_limits(x = 0, y = 0)+
+  geom_point(aes(x=Equipos,y=Titulos,color="Titulos"))
+
+
+```
+
+```{r chunk-2}
+ggplotly(liga, tooltip = c("x","y"))
+
+
+```
+
+## Resultados de La Liga
+
+Se comprueba como hay 3 grandes equipos en La Liga: **At. Madrid**, **F.C. Barcelona** y por encima el **Real Madrid**. Así pues y con la teoría de Xavi, el Real Madrid es muy superior al resto en La Liga. Por otro lado, tenemos a 2 equipos promedio como son el **Athletico de Bilbao** y el **Valencia**. Si hay 2 equipos que destacan, esos son el F.C. Barcelona y el Real Madrid, por lo que cada temporada, son los 2 equipos que tienen mayor probabilidad de ganar La Liga, por lo que apostar por ellos sería ir sobre seguro. Y entre Barcelona y Real Madrid, sería más seguro apostar por el Real Madrid, un equipo que tiende a ser más regular en las 92 ediciones disputadas.
+
+
+## ¿Y la Champions?
+
+Para el caso de la Champions League las conclusiones son más claras. Sí, con ganar entre 2 y 8 Champions, ya se te considera un equipo promedio. En esta categoría no entrarían equipos como **PSG** o **Manchester City** (Si Mbappe hubiese sabido estadística y no guiarse por el dinero, su decisión hubiese podido ser más sabia).
+
+Y solamente hay **un equipo no superior, sino MUY SUPERIOR al resto**. Este equipo es el **Real Madrid**. Se aprecia que se encuentra **MUY** por encima del intervalo superior de confianza. Es decir, aquí Xavi tampoco sale bien parado.
+
+
+```{r echo=FALSE, include=FALSE, chunk-3}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+library(ggplot2)
+library(plotly)
+
+df_equipos_champions <- data.frame(
+  equipos <- c("Liverpool","  B. Múnich","  Tottenham","Chelsea",
+               "Real Madrid","Man. City","Dortmund",
+               "PSG"),
+  Limite_Inferior <- c(rep(2.03,8)),
+  Limite_Superior <- c(rep(8.06,8)),
+  Titulos <- c(6,6,0,2,14,0,1,0)
+)
+
+colnames(df_equipos_champions) <- c("Equipos","Limite_Inferior","Limite_Superior",
+                               "Titulos")
+champions <- ggplot(df_equipos_champions,aes(x=Equipos, group = 1))+
+  geom_line(aes(x=Equipos,y=Limite_Inferior,color="Limite Inferior"))+
+  geom_line(aes(x=Equipos,y=Limite_Superior,color="Limite Superior"))+
+  geom_line(aes(x=Equipos,y=Titulos,color="Titulos"))+
+  theme_minimal()+
+  theme_light()+
+  theme(text = element_text(family = "Tahoma"),
+        panel.background = element_rect(color = "white", # Border color
+                                        size = 1, fill = "#FFFFFF"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold",hjust = 0.5,size = 25),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.title.position = "plot" ,
+        panel.border = element_blank(),
+        axis.line = element_line(size = 1, colour = "black", linetype=1),
+        legend.position = "top",
+        legend.background = element_rect(fill="lightblue", 
+                                         size=0.5, linetype="solid"))+
+  labs(caption = "Author: Manuel Alén Sánchez",
+       x = "Equipos", y="Títulos",
+       color = "Leyenda")+
+  expand_limits(x = 0, y = 0)+
+  geom_point(aes(x=Equipos,y=Titulos,color="Titulos"))
+
+
+```
+
+```{r chunk-4}
+ggplotly(champions, tooltip = c("x","y", width = 1000, height = 1200))
+
+
+```
+
+## ¿Por qué hacer todo esto?
+
+Para empezar para enseñar que **SIEMPRE** deberíamos mostrar en nuestras gráficas los intervalos de confianza para así tener más contexto sobre nuestra medición. Lo segundo es porque, con esta metodología podemos saber si el dato que hemos obtenido es "casualidad" o "suerte". Si el resultado que obtenemos está muy por encima del intervalo superior, **no podemos hablar de suerte nunca**. Estar entre los intervalos de confianza sería obtener lo esperado estadísticamente hablando.
+
+Aunque es más divertido, una vez que hemos sacado esta información de la Champions...¿Cómo montamos la SuperLiga para que sea por méritos y por millones? Si es "Super" ¿Por qué meter a equipos que no son equipos promedio como el Manchester City o el PSG?
+
+Pero esto será algo que veremos en otra **Píldora Estadística** ¿Veis como las mates sirven en el día a día? Por ejemplo para saber si en el deporte estrella, se mete en una competición a alguien que no se lo merece.
+
+
+
