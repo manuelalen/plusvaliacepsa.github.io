@@ -1,0 +1,70 @@
+---
+title: "¿Cómo de aleatorio es el lanzamiento de un dado?"
+author: "Manuel Alén"
+date: "11/5/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introducción {#seccion-1}
+
+Este _contenido_ ha sido diseñado por **Manuel Alén Sánchez**. Que podéis seguir a esta persona tan guapa, sexy y simpática en [su cuenta de Twitter](https://twitter.com/alen_manu).
+
+## Mira en la gráfica cómo de aleatorios son los resultados.
+
+```{r echo = FALSE, include = FALSE, chunk-1}
+### Añadimos nuestras librerias ###
+library(ggplot2)
+library(plotly)
+library(tidyverse)
+library(skimr)
+
+## Referencia ##
+# url: https://dado.online/
+
+df_dado <- data.frame(
+  valor <- c(1:6),
+            #UNO,DOS,TRES,CUATRO,CINCO,SEIS
+  veces <- c(14,20,15,21,10,20),
+  limite_inferior <- c(rep((100*(1/6)),6)),
+  limite_superior <- c(rep(2*sqrt(100),6))
+)
+
+colnames(df_dado) <- c("Valor","Veces","Limite_Inferior","Limite_Superior")
+color <- c("Veces" = "Blue","Limite_Inferior" = "Red",
+           "Limite_Superior" = "darkgreen")
+
+dado <- ggplot(df_dado, aes(x=Valor,group=1))+
+  geom_line(aes(x=Valor, y=Veces,color="Veces"))+
+  geom_line(aes(x=Valor, y=Limite_Inferior,color="Limite_Inferior"))+
+  geom_line(aes(x=Valor, y=Limite_Superior,color="Limite_Superior"))+
+  theme_light()+
+  theme_minimal()+
+  expand_limits(x = 0, y = 0)+
+  theme(text = element_text(family = "Tahoma"),
+        panel.background = element_rect(color = "white", # Border color
+                                        size = 1, fill = "#FFFFFF"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold",hjust = 0.5,size = 25),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.title.position = "plot" ,
+        panel.border = element_blank(),
+        axis.line = element_line(size = 1, colour = "black", linetype=1),
+        legend.position = "top",
+        legend.background = element_rect(fill="lightblue", 
+                                         size=0.5, linetype="solid"))+
+  labs(title="Probabilidad del dado y sus valores",
+       caption = "Author: Manuel Alén Sánchez",
+       x = "Valor del dado", y="Veces que ha salido",
+       color = "Leyenda")+
+  lims(x=c(1,6),y=c(0,22))
+```
+
+```{r pressure, echo=FALSE}
+ggplotly(dado,tooltip= c("x","y"))
+```
+
