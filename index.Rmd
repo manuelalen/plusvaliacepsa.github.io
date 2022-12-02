@@ -4,6 +4,3 @@ title: "My Website"
 
 Hello, Website!
 
-```{r}
-![Gráfico con la tasa de plusvalía](Capturas/Rplot.png)
-````
