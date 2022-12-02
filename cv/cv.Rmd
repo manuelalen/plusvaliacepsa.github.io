@@ -1,0 +1,137 @@
+---
+title: "CV Manuel Alén"
+author: "Manuel Alén - manualen@protonmail.com"
+date: 'Actualizado : 30/11/2022'
+output: html_document
+---
+
+# Perfil {#seccion-1}
+
+CV de **Manuel Alén Sánchez**. Nacido en Córdoba (España) en 1998. Titulado con el Grado Superior en Administración de Sistemas Informáticos y Redes. Consultor Power BI en [T2C](https://www.t2client.com/). Para más información, se puede consultar y contactar conmigo a través de mi perfil de [Linkedin](https://www.linkedin.com/in/manuel-a-90a4548b/).
+
+> * **Correo**: manualen@protonmail.com\n
+> * **Número**: (34) 633 613 936
+
+## Experiencia Laboral
+
+```{r echo = FALSE, include = FALSE, chunk-1}
+library(ggplot2)
+library(tidyverse)
+library(skimr)
+library(RMySQL)
+library(plotly)
+library(metafor)
+library(dplyr)
+library(DT)
+
+## Experiencia laboral Dataset
+df_cv <- data.frame(
+  Empresa <- c("T2Client","Hispasec Sistemas","CGI"),
+  Comienzo <- c("enero 2020","marzo 2019","julio 2018"),
+  Fin <- c("Actualidad","enero 2020","febrero 2019"),
+  Tareas <- c("Creación de Dashboards en Power BI, gestión de bases de datos on premise, gestión de bases de datos Snowflake, gestión de sistemas Linux, Azure, IICS, MSTR, Tagetik, Stonebranch",
+              "Sysadmin y trabajo en pentesting para clientes. Administración de Bases de datos, sistemas Linux.",
+              "Sysadmin: Gestión de sistemas Linux, bases de datos."))
+
+colnames(df_cv) <- c("Empresa","Comienzo","Fin","Tareas")
+
+
+
+## Vida Académica
+
+df_edu <- data.frame(
+  Centro <- c("Uned","CES Lope de Vega","CES Lope de Vega"),
+  Nivel_Educativo <- c("Grado Universitario en Economía",
+                       "Grado Superior en Administración de Sistemas Informáticos y Redes",
+                       "Bachillerato"),
+  Comienzo <- c("2020","2016","2014"),
+  Fin <- c("Actualidad","2018","2016"))
+
+colnames(df_edu) <- c("Centro","Nivel Educativo","Comienzo","Fin")
+
+
+## Certificaciones
+
+df_cert <- data.frame(
+  Certificación <- c("Microsoft Certified: Power BI Data Analyst Associate",
+                     "Microsoft Certified: Azure Fundamentals",
+                     "Snowflake Cert"),
+  Año_Obtencion <- c("2022","2020","2020"),
+  Link <- c("https://www.credly.com/badges/9e1fa9af-0722-476e-854f-ac525289a22f/linked_in_profile",
+            "https://www.credly.com/badges/c1856566-ddbd-4fe1-ac9a-0cd1ab0ad52e?source=linked_in_profile",
+            "NA")
+)
+
+colnames(df_cert) <- c("Certificacion", "Año Obtencion", "Link")
+
+
+### competencias
+
+df_competencias <- data.frame(
+  Competencia <- c("Ofimática","Linux","SQL","ETL con IICS","Data Visualization","R","Redes","DAX",
+                   "Ansible","Azure","MSTR","Docker","Python"),
+  Puntuacion <- c(9.5,9,9,8.5,8,8,7,7,6,6,5,4,3)
+)
+
+colnames(df_competencias) <- c("Competencia","Puntuacion")
+```
+
+```{r echo=FALSE,warning=FALSE,out.width="110%", DataTable-Experiencia}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+datatable(df_cv) %>%
+  formatStyle(
+  'Fin',
+  backgroundColor = styleEqual(c("Actualidad"), c("lightgreen"))
+)
+```
+
+## Educación
+
+```{r echo=FALSE,warning=FALSE,out.width="110%", DataTable-Edu}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+datatable(df_edu) %>%
+  formatStyle(
+  'Fin',
+  backgroundColor = styleEqual(c("Actualidad"), c("lightgreen"))
+)
+```
+
+## Certificaciones
+
+```{r echo=FALSE,warning=FALSE,out.width="110%", DataTable-certs}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+datatable(df_cert) 
+```
+
+## Competencias
+
+```{r echo = FALSE, include = FALSE, graph-competencias}
+ggCompetencias <-  
+  ggplot(df_competencias, aes(x = reorder(Competencia, Puntuacion), y = Puntuacion, fill=Puntuacion>5 )) + 
+  geom_col() + 
+  coord_flip()+
+    theme_light()+
+  theme_minimal()+
+  theme(text = element_text(family = "Tahoma"),
+        panel.background = element_rect(color = "white", # Border color
+                                        size = 1, fill = "#FFFFFF"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold",hjust = 0.5,size = 25),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.title.position = "plot" ,
+        panel.border = element_blank(),
+        axis.text = element_text(size=7),
+        axis.line = element_line(colour = "black"),
+        legend.position = "none")+
+  labs(title = "Competencias y puntuación",
+       caption = "Author: Manuel Alén Sánchez",
+       x = "Competencia", y="Puntuación")+
+  scale_fill_manual(values = c("red","lightgreen"))
+```
+
+```{r echo=FALSE,warning=FALSE,out.width="110%", compe_graph}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+ggplotly(ggCompetencias,tooltip =c("x","y","fill"))
+```
+
