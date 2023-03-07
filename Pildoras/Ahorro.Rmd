@@ -1,0 +1,65 @@
+---
+title: "Ahorritos"
+author: "Manuel Alén"
+date: "11/6/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introducción {#seccion-1}
+
+Este _contenido_ ha sido creado para ver más visualmente cuánto hemos ahorrado para **nuestra** casita.
+
+Por razones evidentes yo soy el más rojo y tú el azul.
+
+
+
+
+```{r echo = FALSE, include = FALSE, chunk-1}
+library(ggplot2)
+library(plotly)
+df_ahorro <- data.frame(
+  Fecha = rep(c("Ene", "Feb", "Mar", "Abr", "May", "Jun", 
+              "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"), 
+            times = 2),
+  Año = rep(c("23", "23"), each = 12),
+  Persona = rep(c("Sonia", "Manu"), each = 12),
+  Cantidad = c(450, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               300, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+)
+
+
+```
+
+
+```{r echo = FALSE, include = FALSE, datos-graph}
+gg_ahorro <- ggplot(df_ahorro, aes(x = Fecha, y = Cantidad, fill = Persona)) + 
+  geom_bar(stat = "identity", position = "stack") +
+  guides(fill = guide_legend(title = "Leyenda")) +
+  theme_light() +
+  theme_minimal() +
+  scale_x_discrete(limits = c("Ene", "Feb", "Mar", "Abr", "May", "Jun", 
+              "Jul", "Ago", "Sept", "Oct", "Nov", "Dic")) +
+  theme(text = element_text(family = "Tahoma"),
+        panel.background = element_rect(color = "white", size = 1, fill = "#FFFFFF"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold", hjust = 0.5, size = 25),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.title.position = "plot",
+        panel.border = element_blank(),
+        axis.line = element_line(size = 1, colour = "black", linetype = 1),
+        legend.position = "top",
+        legend.background = element_rect(fill = "lightblue", size = 0.5, linetype = "solid")) +
+  labs(title = "Ahorro por mes y persona",
+       caption = "Author: Manuel Alén Sánchez",
+       x = "Fecha", y = "Ahorro",
+       color = "Leyenda")
+```
+
+```{r echo=FALSE, plotly}
+ggplotly(gg_ahorro, tooltip = c("x", "y"))
+```
