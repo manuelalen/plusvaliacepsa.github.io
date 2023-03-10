@@ -1,5 +1,3 @@
-install.packages("shiny")
-
 library(shiny)
 
 # Define la interfaz de usuario
