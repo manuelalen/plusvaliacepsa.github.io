@@ -1,0 +1,21 @@
+name: Refresca el datos.json
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+
+jobs:
+  delete-file:
+    name: Refresca datos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Refresca datos
+        run: |
+          rm datos.json
+      - name: Upload log
+        uses: actions/upload-artifact@v2
+        with:
+          name: Deleted file log
+          path: ./logs/delete_file.log
