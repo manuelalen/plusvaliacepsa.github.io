@@ -1,5 +1,10 @@
 name: Refresca el datos.json
 
+on:
+  schedule:
+    - cron: '04 2 * * *'
+
+
 jobs:
   delete-file:
     name: Refresca datos
