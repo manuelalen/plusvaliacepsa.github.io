@@ -16,6 +16,8 @@ jobs:
       
     - name: Eliminar datos.json
       run: |
+        git config --global user.email "manualen@protonmail.com"
+        git config --global user.name "Manuel Alén"
         rm datos.json
         git rm datos.json
         git commit -m "Eliminado archivo datos.json"
