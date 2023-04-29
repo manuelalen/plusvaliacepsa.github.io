@@ -1,1 +1,18 @@
-"[{\"cantidad\": 104034.0, \"concepto\": \"Trabajo Garantizado\"}, {\"cantidad\": 13381.0, \"concepto\": \"Transporte P&#250;blico Gratuito\"}, {\"cantidad\": 88114.0, \"concepto\": \"Tarjetas Alimentacion y Vestido \"}, {\"cantidad\": 26000.0, \"concepto\": \"Ticket Navidad\"}]"
+[
+    {
+        "cantidad": 104034.0,
+        "concepto": "Trabajo Garantizado"
+    },
+    {
+        "cantidad": 13381.0,
+        "concepto": "Transporte P&#250;blico Gratuito"
+    },
+    {
+        "cantidad": 88114.0,
+        "concepto": "Tarjetas Alimentacion y Vestido "
+    },
+    {
+        "cantidad": 26000.0,
+        "concepto": "Ticket Navidad"
+    }
+]
