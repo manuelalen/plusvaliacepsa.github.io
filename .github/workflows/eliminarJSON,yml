@@ -1,6 +1,8 @@
-name: Eliminar archivo
+name: Eliminar datos.json
 
 on:
+  schedule:
+    - cron: '0 0 * * *' # Se ejecutará a las 00:00 UTC cada día
   workflow_dispatch:
     # Inputs the workflow accepts.
 
@@ -12,8 +14,9 @@ jobs:
     - name: Clonar repositorio
       uses: actions/checkout@v2
       
-    - name: Eliminar archivo
+    - name: Eliminar datos.json
       run: |
+        rm datos.json
         git rm datos.json
         git commit -m "Eliminado archivo datos.json"
         git push
