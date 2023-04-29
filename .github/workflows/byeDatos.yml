@@ -1,0 +1,20 @@
+name: Eliminar archivo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  eliminar-archivo:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositorio
+      uses: actions/checkout@v2
+      
+    - name: Eliminar archivo
+      run: |
+        git rm datos.json
+        git commit -m "Eliminado datos.json"
+        git push
