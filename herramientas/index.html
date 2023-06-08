@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cálculo de Tamaño de Efecto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+  <script>
+    function calcularTamanioEfecto() {
+      var media1 = parseFloat(document.getElementById("media1").value);
+      var media2 = parseFloat(document.getElementById("media2").value);
+      var sd1 = parseFloat(document.getElementById("sd1").value);
+      var sd2 = parseFloat(document.getElementById("sd2").value);
+      var n1 = parseFloat(document.getElementById("n1").value);
+      var n2 = parseFloat(document.getElementById("n2").value);
+
+      var smd = (media1 - media2) / Math.sqrt((sd1 * sd1 + sd2 * sd2) / 2);
+
+      var resultado = "El tamaño del efecto es: " + smd.toFixed(4);
+
+      document.getElementById("resultado").textContent = resultado;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Cálculo de Tamaño de Efecto</h1>
+    <form>
+      <label for="media1">Media 1:</label>
+      <input type="number" id="media1" step="0.01">
+      <br>
+      <label for="media2">Media 2:</label>
+      <input type="number" id="media2" step="0.01">
+      <br>
+      <label for="sd1">Desviación estándar 1:</label>
+      <input type="number" id="sd1" step="0.01">
+      <br>
+      <label for="sd2">Desviación estándar 2:</label>
+      <input type="number" id="sd2" step="0.01">
+      <br>
+      <label for="n1">Tamaño de muestra 1:</label>
+      <input type="number" id="n1" step="1">
+      <br>
+      <label for="n2">Tamaño de muestra 2:</label>
+      <input type="number" id="n2" step="1">
+      <br>
+      <button type="button" onclick="calcularTamanioEfecto()">Calcular</button>
+    </form>
+    <div id="resultado"></div>
+  </div>
+</body>
+</html>
