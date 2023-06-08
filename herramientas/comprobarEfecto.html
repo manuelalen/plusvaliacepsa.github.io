@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Comprobación de Tamaño de Efecto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    select, input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+  <script>
+    function comprobarTamanioEfecto() {
+      var rama = document.getElementById("rama").value;
+      var valor = parseFloat(document.getElementById("valor").value);
+
+      var tamanioEfectoMedio = {
+        "Biología": 0.5,
+        "Experimental": 0.45,
+        "Aplicada": 0.37,
+        "Multidisciplinar": 0.37,
+        "Clínico": 0.37,
+        "Educativo": 0.34,
+        "Psicoanálisis": 0.32,
+        "Desarrollo": 0.30,
+        "Sociales": 0.30
+      };
+
+      var tamanioEfectoMedioRama = tamanioEfectoMedio[rama];
+
+      var resultado;
+
+      if (valor > tamanioEfectoMedioRama) {
+        resultado = "Tu tamaño de efecto está por encima del tamaño de efecto medio que es " + tamanioEfectoMedioRama.toFixed(2);
+      } else {
+        resultado = "Tu tamaño de efecto está por debajo del tamaño de efecto medio que es " + tamanioEfectoMedioRama.toFixed(2);
+      }
+
+      document.getElementById("resultado").textContent = resultado;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Comprobación de Tamaño de Efecto</h1>
+    <form>
+      <div class="input-container">
+        <label for="rama">Rama Científica:</label>
+        <select id="rama">
+          <option value="Biología">Biología</option>
+          <option value="Experimental">Experimental</option>
+          <option value="Aplicada">Aplicada</option>
+          <option value="Multidisciplinar">Multidisciplinar</option>
+          <option value="Clínico">Clínico</option>
+          <option value="Educativo">Educativo</option>
+          <option value="Psicoanálisis">Psicoanálisis</option>
+          <option value="Desarrollo">Desarrollo</option>
+          <option value="Sociales">Sociales</option>
+        </select>
+      </div>
+      <div class="input-container">
+        <label for="valor">Valor Decimal:</label>
+        <input type="number" id="valor" step="0.01">
+      </div>
+      <button type="button" onclick="comprobarTamanioEfecto()">Comprobar</button>
+    </form>
+    <div id="resultado"></div>
+  </div>
+</body>
+</html>
