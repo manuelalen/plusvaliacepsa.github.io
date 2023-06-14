@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Herramientas Científicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .header {
+            background-color: #d87474;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            padding: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .image-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dark-mode-toggle i {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .dark-mode .image-title {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+    </style>
+
+    <script>
+        function toggleDarkMode() {
+            var body = document.getElementsByTagName("body")[0];
+            body.classList.toggle("dark-mode");
+        }
+    </script>
+</head>
+<body>
+    <div class="header">Herramientas Científicas</div>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="image-grid">
+        <div class="image-container">
+            <a href="https://manualen.shinyapps.io/Conducta/">
+                <img src="https://pymstatic.com/36706/conversions/ley-de-igualacion-wide.jpg" alt="Ley Igualación">
+            </a>
+            <div class="image-title">Jacobiano Ley Igualación</div>
+        </div>
+
+        <div class="image-container">
+            <a href="https://manualen.shinyapps.io/IdentidadContable/">
+                <img src="https://valenciaplaza.com/public/Image/2021/8/Publico-vs-privado_NoticiaAmpliada.jpg" alt="Identidad Contable">
+            </a>
+            <div class="image-title">Identidad Contable Sector Público y Privado</div>
+        </div>
+
+        <div class="image-container">
+            <a href="https://n802zc-manu-al0n.shinyapps.io/EvidenciaPlusvalia/">
+                <img src="https://medac.es/sites/default/files/styles/img_blog_big/public/blog/destacadas/tipos%20de%20empresa.jpg?itok=iSDGRayH" alt="Mostrar la Plusvalia">
+            </a>
+            <div class="image-title">Mostrar la Plusvalia de una empresa</div>
+        </div>
+
+        <div class="image-container">
+            <a class="image-link" href="https://n802zc-manu-al0n.shinyapps.io/CalculadoraPlusvalia/">
+                <img src="https://static01.nyt.com/images/2018/05/04/universal/MarxEspano0305/MarxEspano0305-superJumbo.jpg" alt="Calculadora de Plusvalia">
+            </a>
+            <div class="image-title">Calculadora de Plusvalia</div>
+        </div>
+    
+    
+        <div class="image-container">
+            <a class="image-link" href="https://n802zc-manu-al0n.shinyapps.io/ProcesosOponentes/">
+                <img src="https://pymstatic.com/68599/conversions/teoria-proceso-oponente-social.jpg" alt="Procesos Oponentes">
+            </a>
+            <div class="image-title">Procesos Oponentes</div>
+        </div>
+    
+    
+        <div class="image-container">
+            <a class="image-link" href="https://manolito.shinyapps.io/rescorla/">
+                <img src="https://pymstatic.com/37827/conversions/modelo-rescorla-wagner-social.jpg" alt="Método de Rescorla-Wagner">
+            </a>
+            <div class="image-title">Rescorla-Wagner</div>
+        </div>
+    
+    
+        <div class="image-container">
+            <a class="image-link" href="https://manolito.shinyapps.io/fuerzaAsociativa/">
+                <img src="https://flxt.tmsimg.com/assets/p9077231_b_h10_aa.jpg" alt="Fuerza Asociativa">
+            </a>
+            <div class="image-title">Fuerza Asociativa en t = 0</div>
+        </div>
+    
+    
+        <div class="image-container">
+            <a class="image-link" href="https://manuelalen.github.io/herramientas/index.html">
+                <img src="https://www.facthum.com/wp-content/uploads/2017/02/cohen.png" alt="Calculo Tamaño de efecto">
+            </a>
+            <div class="image-title">Calculadora del Tamaño de efecto</div>
+        </div>
+    
+    
+        <div class="image-container">
+            <a class="image-link" href="https://manuelalen.github.io/herramientas/comprobarEfecto.html">
+                <img src="https://www.lifeder.com/wp-content/uploads/2018/09/ramas-de-la-ciencia.jpg" alt="Tamaño de efecto medio por rama científica">
+            </a>
+            <div class="image-title">Tamaño de efecto medio por rama científica</div>
+        </div>
+    </div>
+</body>
+</html>
