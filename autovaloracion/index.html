@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Formulario</h1>
+    
+    <form action="guardar_excel.php" method="post">
+        <label for="opciones">Opción:</label>
+        <select id="opciones" name="opciones">
+            <option value="Mi cuerpo">Mi cuerpo</option>
+            <option value="Le gusta de mí">Le gusta de mí</option>
+            <option value="Está conmigo">Está conmigo</option>
+        </select>
+        
+        <br><br>
+        
+        <label for="texto">Texto:</label>
+        <input type="text" id="texto" name="texto">
+        
+        <br><br>
+        
+        <label for="valor">Valor (0-10):</label>
+        <input type="number" id="valor" name="valor" min="0" max="10" step="0.1">
+        
+        <br><br>
+        
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha">
+        
+        <br><br>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
