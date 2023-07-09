@@ -26,7 +26,7 @@ server <- function(input, output) {
     media2 <- d * desviacion1 + media1
     desviacion2 <- desviacion1
     
-    x <- seq(-4, 4, length.out = 1000)
+    x <- seq(-10, 10, length.out = 1000)
     y1 <- dnorm(x, media1, desviacion1)
     y2 <- dnorm(x, media2, desviacion2)
     
