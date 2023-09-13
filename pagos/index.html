@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de QR</title>
+    <!-- Incluye la biblioteca qrcode.min.js -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</head>
+<body>
+    <h1>Generador de QR</h1>
+    <form>
+        <!-- Campo para ingresar la cantidad a pagar -->
+        <label for="amount">Cantidad a pagar:</label>
+        <input type="text" id="amount" name="amount">
+        <br>
+        <!-- Campo para ingresar la ID del usuario -->
+        <label for="userID">ID de Usuario:</label>
+        <input type="text" id="userID" name="userID">
+        <br>
+        <!-- Botón para generar el código QR -->
+        <button type="button" onclick="generateQR()">Generar QR</button>
+    </form>
+    <!-- Div para mostrar el código QR generado -->
+    <div id="qrcode"></div>
+
+    <script>
+        function generateQR() {
+            // Obtiene la cantidad ingresada por el usuario
+            var amount = document.getElementById("amount").value;
+            // Obtiene la ID de usuario ingresada por el usuario
+            var userID = document.getElementById("userID").value;
+
+            // Construye la URL con parámetros GET
+            var url = "http://localhost/pagos/final_pago.php?amount=" + amount + "&userID=" + userID;
+
+            // Crea un objeto QRCode con la URL
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: url,
+                width: 128,
+                height: 128
+            });
+        }
+    </script>
+</body>
+</html>
