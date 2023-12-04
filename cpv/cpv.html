@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Plusvalía</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Calculadora de Plusvalía</h1>
+        <label for="horas">Horas al día:</label>
+        <input type="number" id="horas" placeholder="Ingrese horas al día">
+
+        <label for="productividad">Productividad por hora:</label>
+        <input type="number" id="productividad" placeholder="Ingrese productividad por hora">
+
+        <label for="capitalVariable">Capital Variable:</label>
+        <input type="number" id="capitalVariable" placeholder="Ingrese el capital variable">
+
+        <label for="instalaciones">Instalaciones:</label>
+        <input type="number" id="instalaciones" placeholder="Ingrese el valor de las instalaciones">
+
+
+        <label for="informaticos">Equipos informáticos:</label>
+        <input type="number" id="informaticos" placeholder="Ingrese el valor de los equipos informáticos">
+
+
+        <label for="transporte">Elementos del transporte:</label>
+        <input type="number" id="transporte" placeholder="Ingrese el valor de los elementos de transporte">
+
+
+        <label for="herramientas">Herramientas:</label>
+        <input type="number" id="herramientas" placeholder="Ingrese el valor de las herramientas">
+
+
+        <label for="trabajadores">Trabajadores:</label>
+        <input type="number" id="trabajadores" placeholder="Ingrese el número de trabajadores">
+        <button onclick="calcular()">Calcular</button>
+
+        <div id="result">
+            <h2>Resultado</h2>
+            <table>
+                <tr>
+                    <th>Plusvalía</th>
+                    <td id="plusvalia"></td>
+                </tr>
+                <tr>
+                    <th>Tasa de Plusvalía</th>
+                    <td id="tasaPlusvalia"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function calcular() {
+            // Obtener los valores de los campos de entrada
+            var horas = parseFloat(document.getElementById('horas').value);
+            var productividad = parseFloat(document.getElementById('productividad').value);
+            // Obtener los demás valores y realizar los cálculos
+            var instalaciones = parseFloat(document.getElementById('instalaciones').value);
+            var equipos = parseFloat(document.getElementById('informaticos').value);
+            var transporte = parseFloat(document.getElementById('transporte').value);
+            var herramientas = parseFloat(document.getElementById('herramientas').value);
+            var trabajadores = parseFloat(document.getElementById('trabajadores').value);
+
+            var capitalConstante = ((instalaciones / 20) / trabajadores) +
+                                  ((equipos / 10) / trabajadores) +
+                                  ((transporte / 14) / trabajadores) +
+                                  ((herramientas / 8) / trabajadores);
+
+            var produccion = horas * 5 * 4 * 11 * productividad;
+
+            var capitalVariable = parseFloat(document.getElementById('capitalVariable').value);
+
+            var plusvalia = produccion - capitalConstante - capitalVariable;
+            var tasaPlusvalia = plusvalia / capitalVariable;
+
+            // Mostrar los resultados en la página
+            document.getElementById('plusvalia').textContent = plusvalia.toFixed(2);
+            document.getElementById('tasaPlusvalia').textContent = (tasaPlusvalia * 100).toFixed(2) + '%';
+        }
+    </script>
+</body>
+</html>
