@@ -36,6 +36,8 @@ packaging==24.0
 
 pandas==2.2.2
 
+pandasai
+
 pillow==10.3.0
 
 protobuf==4.25.3
