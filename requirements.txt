@@ -54,6 +54,8 @@ python-dotenv
 
 pytz==2024.1
 
+PyYAML
+
 referencing==0.35.1
 
 requests==2.32.3
