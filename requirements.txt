@@ -76,7 +76,7 @@ toml==0.10.2
 
 toolz==0.12.1
 
-tornado==6.4
+tornado==6.4.1
 
 typing-extensions==4.12.0
 
